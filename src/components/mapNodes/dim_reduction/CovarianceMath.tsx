@@ -142,13 +142,38 @@ export default function CovarianceMath() {
                 </div>
 
                 <div className="flex flex-col gap-2 text-white/90">
-                  <span>5. <b>Vecteurs & Valeurs Propres de Σ</b> :</span>
-                  <span className="ml-4 font-serif text-[11px] md:text-sm">- λ<sub>1</sub> = 4, <span className="inline-block px-1">v<sub>1</sub> = [0.707, 0.707]</span> <i className="opacity-50 ml-1 text-white/50 text-[10px] md:text-xs">(Axe principal, garde 100% de variance)</i></span>
-                  <span className="ml-4 font-serif text-[11px] md:text-sm">- λ<sub>2</sub> = 0, <span className="inline-block px-1">v<sub>2</sub> = [−0.707, 0.707]</span> <i className="opacity-50 ml-1 text-white/50 text-[10px] md:text-xs">(Axe orthogonal, 0% de variance)</i></span>
+                  <span>5. <b>Calcul des Valeurs Propres (λ)</b> :</span>
+                  <div className="ml-4 flex flex-col gap-1 text-[10px] md:text-xs text-white/80">
+                    <span className="font-serif">λ est une valeur propre de Σ. On résout <span className="italic">det(Σ−λI)=0</span></span>
+                    <span className="font-serif">Σ−λI = <span className="inline-block px-1">[2−λ, 2; 2, 2−λ]</span></span>
+                    <span className="font-serif">det = (2−λ)(2−λ)−(2⋅2) = (2−λ)²−4</span>
+                    <span className="font-serif">(2−λ)² = 4−4λ+λ² ⇒ det = λ²−4λ</span>
+                    <span className="font-serif">λ²−4λ = 0 ⇒ <span className="italic">λ(λ−4)=0</span></span>
+                    <span className="font-serif text-white/90"><b>Résultat : λ₁ = 4, λ₂ = 0</b></span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2 text-white/90">
+                  <span>6. <b>Calcul des Vecteurs Propres (v)</b> :</span>
+                  <div className="ml-4 flex flex-col gap-1 text-[10px] md:text-xs text-white/80">
+                    <span className="font-serif">Pour chaque λ, on résout <span className="italic">(Σ−λI)v = 0</span></span>
+                    <span className="font-serif"><b>Pour λ₁ = 4</b> : Σ−4I = [−2, 2; 2, −2]</span>
+                    <span className="font-serif">−2x + 2y = 0 ⇒ <span className="italic">y = x</span> ⇒ v₁ = [1, 1]</span>
+                    <span className="font-serif">Normalisation : v₁ = [1/√2, 1/√2] ≈ [0.707, 0.707]</span>
+                    <span className="font-serif mt-1"><b>Pour λ₂ = 0</b> : Σ−0I = [2, 2; 2, 2]</span>
+                    <span className="font-serif">2x + 2y = 0 ⇒ <span className="italic">y = −x</span> ⇒ v₂ = [1, −1]</span>
+                    <span className="font-serif">Normalisation : v₂ = [1/√2, −1/√2] ≈ [0.707, −0.707]</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2 text-white/90">
+                  <span>7. <b>Vecteurs Propres de Σ (résultats)</b> :</span>
+                  <span className="ml-4 font-serif text-[11px] md:text-sm">- <span className="inline-block px-1">v<sub>1</sub> = [0.707, 0.707]</span> <i className="opacity-50 ml-1 text-white/50 text-[10px] md:text-xs">(Axe principal associé à λ₁=4, 100% de variance)</i></span>
+                  <span className="ml-4 font-serif text-[11px] md:text-sm">- <span className="inline-block px-1">v<sub>2</sub> = [−0.707, 0.707]</span> <i className="opacity-50 ml-1 text-white/50 text-[10px] md:text-xs">(Axe orthogonal associé à λ₂=0, 0% de variance)</i></span>
                 </div>
 
                 <p className="mt-2 text-white leading-relaxed">
-                  6. <b>Projection (L'ACP)</b> : On élimine la dimension <i>v<sub>2</sub></i> (car λ<sub>2</sub>=0) et on projette sur <i>v<sub>1</sub></i>.<br/>
+                  8. <b>Projection (L'ACP)</b> : On élimine la dimension <i>v<sub>2</sub></i> (car λ<sub>2</sub>=0) et on projette sur <i>v<sub>1</sub></i>.<br/>
                   Nos points 2D d'origine se transforment en coordonnées 1D : <br/>
                   <span className="font-mono text-sm shadow-sm px-1 rounded bg-white/5 border border-white/10"><b>−1.41</b></span> et <span className="font-mono text-sm shadow-sm px-1 rounded bg-white/5 border border-white/10"><b>+1.41</b></span> sur ce nouvel axe ! Compression réussie sans perte.
                 </p>
