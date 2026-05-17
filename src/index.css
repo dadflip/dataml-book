@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Lexend", ui-sans-serif, system-ui, sans-serif;
+  --font-hand: "Lexend", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Lexend", ui-monospace, SFMono-Regular, monospace;
+  --font-serif: "Lexend", ui-serif, Georgia, serif;
+}
+
+body {
+  @apply bg-[#050505] text-white/90 antialiased selection:bg-white/20;
+}
+
+/* Style de dessin ebook illustré global pour les SVGs */
+svg text {
+  font-family: var(--font-sans) !important;
+  font-weight: 700;
+}
+
+svg path, svg line, svg circle, svg rect, svg polygon, svg ellipse {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Assurer un tracé un peu plus épais "marker" */
+svg[className*="stroke-black"] > path,
+svg[className*="stroke-black"] > line,
+svg[className*="stroke-black"] > rect {
+  stroke-width: 1.5px;
+}
